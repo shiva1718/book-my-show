@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+// Pages
+import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
+import PlayPage from "./pages/PlayPage";
+
+// Routes
+import {Routes, Route} from 'react-router-dom';
+import axios from "axios";
+
+// React slick css
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
+axios.defaults.baseURL= "https://api.themoviedb.org/3";
+axios.defaults.params ={};
+// axios.defaults.params["api_key"]= process.env.REACT_APP_API_KEY;
+axios.defaults.params["api_key"]= "c54ab2f18bdf2fcbf4283c5aa5ab488c";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/plays" element={<PlayPage />} />
+    </Routes>
 }
 
 export default App;
